@@ -459,7 +459,7 @@ export default class Autosuggest extends Component {
       method: 'click',
     };
 
-    if (!event.metaKey) {
+    if (!event.metaKey && !event.ctrlKey) {
       this.onSuggestionSelected(event, data);
 
       const keepSuggestionsOnSelect = this.props.shouldKeepSuggestionsOnSelect(

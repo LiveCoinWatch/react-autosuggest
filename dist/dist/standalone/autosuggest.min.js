@@ -840,7 +840,7 @@
           );
         return e;
       }
-      function q() {
+      function K() {
         if ('undefined' == typeof Reflect || !Reflect.construct) return !1;
         if (Reflect.construct.sham) return !1;
         if ('function' == typeof Proxy) return !0;
@@ -855,8 +855,8 @@
           return !1;
         }
       }
-      function K(e) {
-        return (K = Object.setPrototypeOf
+      function q(e) {
+        return (q = Object.setPrototypeOf
           ? Object.getPrototypeOf
           : function (e) {
               return e.__proto__ || Object.getPrototypeOf(e);
@@ -902,9 +902,9 @@
             ((t = s),
             function () {
               var e,
-                n = K(t);
-              if (q()) {
-                var o = K(this).constructor;
+                n = q(t);
+              if (K()) {
+                var o = q(this).constructor;
                 e = Reflect.construct(n, arguments, o);
               } else e = n.apply(this, arguments);
               return L(this, e);
@@ -1806,7 +1806,7 @@
                   sectionIndex: s,
                   method: 'click',
                 };
-                if (e.metaKey) i && i(e, g);
+                if (e.metaKey || e.ctrlKey) i && i(e, g);
                 else {
                   t.onSuggestionSelected(e, g);
                   var f = t.props.shouldKeepSuggestionsOnSelect(a);

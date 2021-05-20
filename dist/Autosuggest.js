@@ -436,7 +436,7 @@ var Autosuggest = /*#__PURE__*/ (function (_Component) {
           method: 'click',
         };
 
-        if (!event.metaKey) {
+        if (!event.metaKey && !event.ctrlKey) {
           _this.onSuggestionSelected(event, data);
 
           var keepSuggestionsOnSelect = _this.props.shouldKeepSuggestionsOnSelect(
