@@ -408,7 +408,8 @@ var Autosuggest = /*#__PURE__*/ (function (_Component) {
         var _this$props2 = _this.props,
           alwaysRenderSuggestions = _this$props2.alwaysRenderSuggestions,
           focusInputOnSuggestionClick =
-            _this$props2.focusInputOnSuggestionClick;
+            _this$props2.focusInputOnSuggestionClick,
+          onSuggestionSelected = _this$props2.onSuggestionSelected;
 
         var _this$getSuggestionIn = _this.getSuggestionIndices(
             _this.findSuggestionElement(event.target)
@@ -427,20 +428,26 @@ var Autosuggest = /*#__PURE__*/ (function (_Component) {
 
         _this.maybeCallOnChange(event, clickedSuggestionValue, 'click');
 
-        _this.onSuggestionSelected(event, {
+        var data = {
           suggestion: clickedSuggestion,
           suggestionValue: clickedSuggestionValue,
           suggestionIndex: suggestionIndex,
           sectionIndex: sectionIndex,
           method: 'click',
-        });
+        };
 
-        var keepSuggestionsOnSelect = _this.props.shouldKeepSuggestionsOnSelect(
-          clickedSuggestion
-        );
+        if (!event.metaKey) {
+          _this.onSuggestionSelected(event, data);
 
-        if (!(alwaysRenderSuggestions || keepSuggestionsOnSelect)) {
-          _this.closeSuggestions();
+          var keepSuggestionsOnSelect = _this.props.shouldKeepSuggestionsOnSelect(
+            clickedSuggestion
+          );
+
+          if (!(alwaysRenderSuggestions || keepSuggestionsOnSelect)) {
+            _this.closeSuggestions();
+          }
+        } else {
+          onSuggestionSelected && onSuggestionSelected(event, data);
         }
 
         if (focusInputOnSuggestionClick === true) {

@@ -1792,22 +1792,27 @@
                 var n = t.props,
                   o = n.alwaysRenderSuggestions,
                   r = n.focusInputOnSuggestionClick,
-                  i = t.getSuggestionIndices(t.findSuggestionElement(e.target)),
-                  u = i.sectionIndex,
-                  s = i.suggestionIndex,
-                  c = t.getSuggestion(u, s),
-                  a = t.props.getSuggestionValue(c);
-                t.maybeCallOnChange(e, a, 'click'),
-                  t.onSuggestionSelected(e, {
-                    suggestion: c,
-                    suggestionValue: a,
-                    suggestionIndex: s,
-                    sectionIndex: u,
-                    method: 'click',
-                  });
-                var l = t.props.shouldKeepSuggestionsOnSelect(c);
-                o || l || t.closeSuggestions(),
-                  !0 === r ? t.input.focus() : t.onBlur(),
+                  i = n.onSuggestionSelected,
+                  u = t.getSuggestionIndices(t.findSuggestionElement(e.target)),
+                  s = u.sectionIndex,
+                  c = u.suggestionIndex,
+                  a = t.getSuggestion(s, c),
+                  l = t.props.getSuggestionValue(a);
+                t.maybeCallOnChange(e, l, 'click');
+                var g = {
+                  suggestion: a,
+                  suggestionValue: l,
+                  suggestionIndex: c,
+                  sectionIndex: s,
+                  method: 'click',
+                };
+                if (e.metaKey) i && i(e, g);
+                else {
+                  t.onSuggestionSelected(e, g);
+                  var f = t.props.shouldKeepSuggestionsOnSelect(a);
+                  o || f || t.closeSuggestions();
+                }
+                !0 === r ? t.input.focus() : t.onBlur(),
                   setTimeout(function () {
                     t.justSelectedSuggestion = !1;
                   });
