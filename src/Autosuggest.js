@@ -436,7 +436,11 @@ export default class Autosuggest extends Component {
   };
 
   onSuggestionClick = (event) => {
-    const { alwaysRenderSuggestions, focusInputOnSuggestionClick } = this.props;
+    const {
+      alwaysRenderSuggestions,
+      focusInputOnSuggestionClick,
+      onSuggestionSelected,
+    } = this.props;
     const { sectionIndex, suggestionIndex } = this.getSuggestionIndices(
       this.findSuggestionElement(event.target)
     );
@@ -446,20 +450,27 @@ export default class Autosuggest extends Component {
     );
 
     this.maybeCallOnChange(event, clickedSuggestionValue, 'click');
-    this.onSuggestionSelected(event, {
+
+    const data = {
       suggestion: clickedSuggestion,
       suggestionValue: clickedSuggestionValue,
       suggestionIndex: suggestionIndex,
       sectionIndex,
       method: 'click',
-    });
+    };
 
-    const keepSuggestionsOnSelect = this.props.shouldKeepSuggestionsOnSelect(
-      clickedSuggestion
-    );
+    if (!event.metaKey) {
+      this.onSuggestionSelected(event, data);
 
-    if (!(alwaysRenderSuggestions || keepSuggestionsOnSelect)) {
-      this.closeSuggestions();
+      const keepSuggestionsOnSelect = this.props.shouldKeepSuggestionsOnSelect(
+        clickedSuggestion
+      );
+
+      if (!(alwaysRenderSuggestions || keepSuggestionsOnSelect)) {
+        this.closeSuggestions();
+      }
+    } else {
+      onSuggestionSelected && onSuggestionSelected(event, data);
     }
 
     if (focusInputOnSuggestionClick === true) {
