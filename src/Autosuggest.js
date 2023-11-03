@@ -173,11 +173,8 @@ export default class Autosuggest extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {
-      suggestions,
-      onSuggestionHighlighted,
-      highlightFirstSuggestion,
-    } = this.props;
+    const { suggestions, onSuggestionHighlighted, highlightFirstSuggestion } =
+      this.props;
 
     if (
       !shallowEqualArrays(suggestions, prevProps.suggestions) &&
@@ -445,9 +442,8 @@ export default class Autosuggest extends Component {
       this.findSuggestionElement(event.target)
     );
     const clickedSuggestion = this.getSuggestion(sectionIndex, suggestionIndex);
-    const clickedSuggestionValue = this.props.getSuggestionValue(
-      clickedSuggestion
-    );
+    const clickedSuggestionValue =
+      this.props.getSuggestionValue(clickedSuggestion);
 
     this.maybeCallOnChange(event, clickedSuggestionValue, 'click');
 
@@ -462,9 +458,8 @@ export default class Autosuggest extends Component {
     if (!event.metaKey && !event.ctrlKey) {
       this.onSuggestionSelected(event, data);
 
-      const keepSuggestionsOnSelect = this.props.shouldKeepSuggestionsOnSelect(
-        clickedSuggestion
-      );
+      const keepSuggestionsOnSelect =
+        this.props.shouldKeepSuggestionsOnSelect(clickedSuggestion);
 
       if (!(alwaysRenderSuggestions || keepSuggestionsOnSelect)) {
         this.closeSuggestions();
@@ -679,10 +674,8 @@ export default class Autosuggest extends Component {
                 event.preventDefault(); // We act on the key.
               }
             } else if (suggestions.length > 0) {
-              const {
-                newHighlightedSectionIndex,
-                newHighlightedItemIndex,
-              } = data;
+              const { newHighlightedSectionIndex, newHighlightedItemIndex } =
+                data;
 
               let newValue;
 

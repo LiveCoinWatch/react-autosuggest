@@ -17,11 +17,10 @@
     "test": "cross-env NODE_ENV=test nyc mocha \"test/**/*.test.js\"",
     "copy-static-files": "cp demo/src/index.html demo/src/components/App/components/Examples/components/Basic/autosuggest.css demo/dist/",
     "dist": "rm -rf dist && mkdir dist && babel src -d dist",
-    "demo-dist": "rm -rf demo/dist && mkdir demo/dist && npm run copy-static-files && cross-env BABEL_ENV=production webpack --config webpack.gh-pages.config.js",
     "standalone": "cross-env BABEL_ENV=production webpack --config webpack.standalone.config.js && webpack --config webpack.standalone-demo.config.js",
     "prebuild": "npm run prettier:src && npm run lint && npm test",
     "build": "npm run dist && npm run standalone",
-    "gh-pages-build": "npm run prebuild && npm run demo-dist",
+    "gh-pages-build": "npm run prebuild",
     "postversion": "git push && git push --tags",
     "prepublish": "npm run dist && npm run standalone",
     "precommit": "lint-staged"

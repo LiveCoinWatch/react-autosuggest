@@ -296,11 +296,8 @@ export default class Autowhatever extends Component {
   };
 
   onKeyDown = (event) => {
-    const {
-      inputProps,
-      highlightedSectionIndex,
-      highlightedItemIndex,
-    } = this.props;
+    const { inputProps, highlightedSectionIndex, highlightedItemIndex } =
+      this.props;
     const { keyCode } = event;
 
     switch (keyCode) {
@@ -308,13 +305,11 @@ export default class Autowhatever extends Component {
       case 38: {
         // ArrowUp
         const nextPrev = keyCode === 40 ? 'next' : 'prev';
-        const [
-          newHighlightedSectionIndex,
-          newHighlightedItemIndex,
-        ] = this.sectionIterator[nextPrev]([
-          highlightedSectionIndex,
-          highlightedItemIndex,
-        ]);
+        const [newHighlightedSectionIndex, newHighlightedItemIndex] =
+          this.sectionIterator[nextPrev]([
+            highlightedSectionIndex,
+            highlightedItemIndex,
+          ]);
 
         inputProps.onKeyDown(event, {
           newHighlightedSectionIndex,
