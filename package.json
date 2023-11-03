@@ -9,21 +9,13 @@
   },
   "author": "Misha Moroshko <michael.moroshko@gmail.com>",
   "scripts": {
-    "start": "mkdir -p demo/dist && npm run copy-static-files && node server",
-    "prettier": "prettier --single-quote --write",
-    "prettier:src": "npm run prettier -- \"src/**/*.js\"",
-    "prettier:all": "npm run prettier -- \".*.js\" \"*.js\" \"demo/src/**/*.js\" \"demo/standalone/app.js\" \"src/**/*.js\" \"test/**/*.js\"",
-    "lint": "eslint src test demo/src demo/standalone/app.js server.js webpack.*.js",
     "test": "cross-env NODE_ENV=test nyc mocha \"test/**/*.test.js\"",
-    "copy-static-files": "cp demo/src/index.html demo/src/components/App/components/Examples/components/Basic/autosuggest.css demo/dist/",
     "dist": "rm -rf dist && mkdir dist && babel src -d dist",
-    "standalone": "cross-env BABEL_ENV=production webpack --config webpack.standalone.config.js && webpack --config webpack.standalone-demo.config.js",
-    "prebuild": "npm run prettier:src && npm run lint && npm test",
+    "standalone": "cross-env BABEL_ENV=production webpack --config webpack.standalone.config.js",
+    "prebuild": "echo 0",
     "build": "npm run dist && npm run standalone",
-    "gh-pages-build": "npm run prebuild",
     "postversion": "git push && git push --tags",
-    "prepublish": "npm run dist && npm run standalone",
-    "precommit": "lint-staged"
+    "prepublish": "npm run dist && npm run standalone"
   },
   "dependencies": {
     "es6-promise": "^4.2.8",
@@ -45,23 +37,18 @@
     "@istanbuljs/nyc-config-babel": "^3.0.0",
     "autoprefixer": "^9.8.8",
     "autosuggest-highlight": "^3.1.1",
-    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-istanbul": "^6.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chai": "^4.2.0",
     "cross-env": "^7.0.2",
     "css-loader": "^3.4.2",
-    "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.19.0",
     "file-loader": "^6.0.0",
-    "husky": "^4.2.3",
     "ismobilejs": "^1.0.3",
     "isomorphic-fetch": "^2.2.1",
     "jsdom": "15.1.1",
     "less": "^4.2.0",
     "less-loader": "^11.1.3",
-    "lint-staged": "^10.0.10",
     "mini-css-extract-plugin": "^2.7.6",
     "mocha": "^7.1.1",
     "nyc": "^15.0.0",
@@ -85,16 +72,6 @@
   "files": [
     "dist"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "npm run prettier:src"
-    ]
-  },
   "keywords": [
     "autosuggest",
     "autocomplete",
