@@ -1,8 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: './demo/src/index',
@@ -10,16 +9,8 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, 'demo', 'dist'),
-    filename: 'index.js'
-  },
-
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true
-      })
-    ]
+    filename: 'index.js',
+    clean: true, // Webpack 5 feature to clean the output directory
   },
 
   module: {
@@ -28,9 +19,9 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [
-          path.join(__dirname, 'src'), // Must be an absolute path
-          path.join(__dirname, 'demo', 'src') // Must be an absolute path
-        ]
+          path.join(__dirname, 'src'),
+          path.join(__dirname, 'demo', 'src'),
+        ],
       },
       {
         test: /\.less$/,
@@ -40,51 +31,53 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]__[local]___[hash:base64:5]'
-              }
-            }
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [autoprefixer()]
-            }
+              postcssOptions: {
+                plugins: [autoprefixer()],
+              },
+            },
           },
           {
             loader: 'less-loader',
             options: {
-              paths: [path.resolve(__dirname, 'demo', 'src')]
-            }
-          }
+              lessOptions: {
+                paths: [path.resolve(__dirname, 'demo', 'src')],
+              },
+            },
+          },
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
-        test: /\.jpg$/,
-        loader: 'url-loader?limit=8192' // 8kb
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset/resource', // Replaces file-loader and url-loader
+        generator: {
+          filename: 'images/[hash][ext][query]', // Defines custom output filename
+        },
       },
-      {
-        test: /\.svg$/,
-        use: [
-          'url-loader?limit=8192!', // 8kb
-          'svgo-loader'
-        ]
-      }
-    ]
+    ],
   },
 
   resolve: {
-    modules: ['node_modules', 'components', 'src']
+    modules: ['node_modules', 'components', 'src'],
+    fallback: {
+      // Provide Webpack 5 fallbacks for Node.js core modules if necessary
+    },
   },
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'app.css'
+      filename: 'app.css',
     }),
+    // DefinePlugin is often used to define environment variables
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    })
-  ]
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
+  ],
 };

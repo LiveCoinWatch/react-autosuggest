@@ -4,103 +4,65 @@ Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 exports['default'] = void 0;
-
 var _react = _interopRequireWildcard(require('react'));
-
 var _propTypes = _interopRequireDefault(require('prop-types'));
-
 var _sectionIterator = _interopRequireDefault(require('section-iterator'));
-
 var _reactThemeable = _interopRequireDefault(require('react-themeable'));
-
 var _SectionTitle = _interopRequireDefault(require('./SectionTitle'));
-
 var _ItemList = _interopRequireDefault(require('./ItemList'));
-
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
-
-function _getRequireWildcardCache() {
-  if (typeof WeakMap !== 'function') return null;
-  var cache = new WeakMap();
-  _getRequireWildcardCache = function _getRequireWildcardCache() {
-    return cache;
-  };
-  return cache;
+function _getRequireWildcardCache(e) {
+  if ('function' != typeof WeakMap) return null;
+  var r = new WeakMap(),
+    t = new WeakMap();
+  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
+    return e ? t : r;
+  })(e);
 }
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  }
-  if (
-    obj === null ||
-    (_typeof(obj) !== 'object' && typeof obj !== 'function')
-  ) {
-    return { default: obj };
-  }
-  var cache = _getRequireWildcardCache();
-  if (cache && cache.has(obj)) {
-    return cache.get(obj);
-  }
-  var newObj = {};
-  var hasPropertyDescriptor =
-    Object.defineProperty && Object.getOwnPropertyDescriptor;
-  for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      var desc = hasPropertyDescriptor
-        ? Object.getOwnPropertyDescriptor(obj, key)
-        : null;
-      if (desc && (desc.get || desc.set)) {
-        Object.defineProperty(newObj, key, desc);
-      } else {
-        newObj[key] = obj[key];
-      }
+function _interopRequireWildcard(e, r) {
+  if (!r && e && e.__esModule) return e;
+  if (null === e || ('object' != _typeof(e) && 'function' != typeof e))
+    return { default: e };
+  var t = _getRequireWildcardCache(r);
+  if (t && t.has(e)) return t.get(e);
+  var n = { __proto__: null },
+    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
+  for (var u in e)
+    if ('default' !== u && Object.prototype.hasOwnProperty.call(e, u)) {
+      var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
+      i && (i.get || i.set) ? Object.defineProperty(n, u, i) : (n[u] = e[u]);
     }
-  }
-  newObj['default'] = obj;
-  if (cache) {
-    cache.set(obj, newObj);
-  }
-  return newObj;
+  return (n['default'] = e), t && t.set(e, n), n;
 }
-
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
+function ownKeys(e, r) {
+  var t = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly)
-      symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-    keys.push.apply(keys, symbols);
+    var o = Object.getOwnPropertySymbols(e);
+    r &&
+      (o = o.filter(function (r) {
+        return Object.getOwnPropertyDescriptor(e, r).enumerable;
+      })),
+      t.push.apply(t, o);
   }
-  return keys;
+  return t;
 }
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(
-          target,
-          key,
-          Object.getOwnPropertyDescriptor(source, key)
-        );
-      });
-    }
+function _objectSpread(e) {
+  for (var r = 1; r < arguments.length; r++) {
+    var t = null != arguments[r] ? arguments[r] : {};
+    r % 2
+      ? ownKeys(Object(t), !0).forEach(function (r) {
+          _defineProperty(e, r, t[r]);
+        })
+      : Object.getOwnPropertyDescriptors
+      ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t))
+      : ownKeys(Object(t)).forEach(function (r) {
+          Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
+        });
   }
-  return target;
+  return e;
 }
-
 function _slicedToArray(arr, i) {
   return (
     _arrayWithHoles(arr) ||
@@ -109,110 +71,128 @@ function _slicedToArray(arr, i) {
     _nonIterableRest()
   );
 }
-
 function _nonIterableRest() {
   throw new TypeError(
     'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
   );
 }
-
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
   if (typeof o === 'string') return _arrayLikeToArray(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === 'Object' && o.constructor) n = o.constructor.name;
-  if (n === 'Map' || n === 'Set') return Array.from(n);
+  if (n === 'Map' || n === 'Set') return Array.from(o);
   if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
     return _arrayLikeToArray(o, minLen);
 }
-
 function _arrayLikeToArray(arr, len) {
   if (len == null || len > arr.length) len = arr.length;
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
   return arr2;
 }
-
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === 'undefined' || !(Symbol.iterator in Object(arr)))
-    return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-  try {
-    for (
-      var _i = arr[Symbol.iterator](), _s;
-      !(_n = (_s = _i.next()).done);
-      _n = true
-    ) {
-      _arr.push(_s.value);
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
+function _iterableToArrayLimit(r, l) {
+  var t =
+    null == r
+      ? null
+      : ('undefined' != typeof Symbol && r[Symbol.iterator]) || r['@@iterator'];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
     try {
-      if (!_n && _i['return'] != null) _i['return']();
+      if (((i = (t = t.call(r)).next), 0 === l)) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else
+        for (
+          ;
+          !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l);
+          f = !0
+        );
+    } catch (r) {
+      (o = !0), (n = r);
     } finally {
-      if (_d) throw _e;
+      try {
+        if (!f && null != t['return'] && ((u = t['return']()), Object(u) !== u))
+          return;
+      } finally {
+        if (o) throw n;
+      }
     }
+    return a;
   }
-  return _arr;
 }
-
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
-
-function _typeof(obj) {
+function _typeof(o) {
   '@babel/helpers - typeof';
-  if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') {
-    _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function _typeof(obj) {
-      return obj &&
-        typeof Symbol === 'function' &&
-        obj.constructor === Symbol &&
-        obj !== Symbol.prototype
-        ? 'symbol'
-        : typeof obj;
-    };
-  }
-  return _typeof(obj);
+  return (
+    (_typeof =
+      'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
+        ? function (o) {
+            return typeof o;
+          }
+        : function (o) {
+            return o &&
+              'function' == typeof Symbol &&
+              o.constructor === Symbol &&
+              o !== Symbol.prototype
+              ? 'symbol'
+              : typeof o;
+          }),
+    _typeof(o)
+  );
 }
-
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError('Cannot call a class as a function');
   }
 }
-
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
     descriptor.configurable = true;
     if ('value' in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
+    Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor);
   }
 }
-
 function _createClass(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, 'prototype', { writable: false });
   return Constructor;
 }
-
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError('Super expression must either be null or a function');
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: { value: subClass, writable: true, configurable: true },
+  });
+  Object.defineProperty(subClass, 'prototype', { writable: false });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf
+    ? Object.setPrototypeOf.bind()
+    : function _setPrototypeOf(o, p) {
+        o.__proto__ = p;
+        return o;
+      };
+  return _setPrototypeOf(o, p);
+}
 function _createSuper(Derived) {
-  return function () {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+  return function _createSuperInternal() {
     var Super = _getPrototypeOf(Derived),
       result;
-    if (_isNativeReflectConstruct()) {
+    if (hasNativeReflectConstruct) {
       var NewTarget = _getPrototypeOf(this).constructor;
       result = Reflect.construct(Super, arguments, NewTarget);
     } else {
@@ -221,14 +201,16 @@ function _createSuper(Derived) {
     return _possibleConstructorReturn(this, result);
   };
 }
-
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === 'object' || typeof call === 'function')) {
     return call;
+  } else if (call !== void 0) {
+    throw new TypeError(
+      'Derived constructors may only return object or undefined'
+    );
   }
   return _assertThisInitialized(self);
 }
-
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError(
@@ -237,49 +219,29 @@ function _assertThisInitialized(self) {
   }
   return self;
 }
-
 function _isNativeReflectConstruct() {
   if (typeof Reflect === 'undefined' || !Reflect.construct) return false;
   if (Reflect.construct.sham) return false;
   if (typeof Proxy === 'function') return true;
   try {
-    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    Boolean.prototype.valueOf.call(
+      Reflect.construct(Boolean, [], function () {})
+    );
     return true;
   } catch (e) {
     return false;
   }
 }
-
 function _getPrototypeOf(o) {
   _getPrototypeOf = Object.setPrototypeOf
-    ? Object.getPrototypeOf
+    ? Object.getPrototypeOf.bind()
     : function _getPrototypeOf(o) {
         return o.__proto__ || Object.getPrototypeOf(o);
       };
   return _getPrototypeOf(o);
 }
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== 'function' && superClass !== null) {
-    throw new TypeError('Super expression must either be null or a function');
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: { value: subClass, writable: true, configurable: true },
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf =
-    Object.setPrototypeOf ||
-    function _setPrototypeOf(o, p) {
-      o.__proto__ = p;
-      return o;
-    };
-  return _setPrototypeOf(o, p);
-}
-
 function _defineProperty(obj, key, value) {
+  key = _toPropertyKey(key);
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -292,13 +254,24 @@ function _defineProperty(obj, key, value) {
   }
   return obj;
 }
-
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, 'string');
+  return _typeof(key) === 'symbol' ? key : String(key);
+}
+function _toPrimitive(input, hint) {
+  if (_typeof(input) !== 'object' || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || 'default');
+    if (_typeof(res) !== 'object') return res;
+    throw new TypeError('@@toPrimitive must return a primitive value.');
+  }
+  return (hint === 'string' ? String : Number)(input);
+}
 var emptyObject = {};
-
 var defaultRenderInputComponent = function defaultRenderInputComponent(props) {
   return /*#__PURE__*/ _react['default'].createElement('input', props);
 };
-
 var defaultRenderItemsContainer = function defaultRenderItemsContainer(_ref) {
   var containerProps = _ref.containerProps,
     children = _ref.children;
@@ -308,7 +281,6 @@ var defaultRenderItemsContainer = function defaultRenderItemsContainer(_ref) {
     children
   );
 };
-
 var defaultTheme = {
   container: 'react-autowhatever__container',
   containerOpen: 'react-autowhatever__container--open',
@@ -325,19 +297,13 @@ var defaultTheme = {
   sectionContainerFirst: 'react-autowhatever__section-container--first',
   sectionTitle: 'react-autowhatever__section-title',
 };
-
-var Autowhatever = /*#__PURE__*/ (function (_Component) {
+var Autowhatever = (exports['default'] = /*#__PURE__*/ (function (_Component) {
   _inherits(Autowhatever, _Component);
-
   var _super = _createSuper(Autowhatever);
-
   function Autowhatever(props) {
     var _this;
-
     _classCallCheck(this, Autowhatever);
-
     _this = _super.call(this, props);
-
     _defineProperty(
       _assertThisInitialized(_this),
       'storeInputReference',
@@ -345,9 +311,7 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
         if (input !== null) {
           _this.input = input;
         }
-
         var userRef = _this.props.inputProps.ref;
-
         if (userRef) {
           if (typeof userRef === 'function') {
             userRef(input);
@@ -360,7 +324,6 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
         }
       }
     );
-
     _defineProperty(
       _assertThisInitialized(_this),
       'storeItemsContainerReference',
@@ -370,7 +333,6 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
         }
       }
     );
-
     _defineProperty(
       _assertThisInitialized(_this),
       'onHighlightedItemChange',
@@ -378,103 +340,88 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
         _this.highlightedItem = highlightedItem;
       }
     );
-
-    _defineProperty(_assertThisInitialized(_this), 'getItemId', function (
-      sectionIndex,
-      itemIndex
-    ) {
-      if (itemIndex === null) {
-        return null;
+    _defineProperty(
+      _assertThisInitialized(_this),
+      'getItemId',
+      function (sectionIndex, itemIndex) {
+        if (itemIndex === null) {
+          return null;
+        }
+        var id = _this.props.id;
+        var section =
+          sectionIndex === null ? '' : 'section-'.concat(sectionIndex);
+        return 'react-autowhatever-'
+          .concat(id, '-')
+          .concat(section, '-item-')
+          .concat(itemIndex);
       }
-
-      var id = _this.props.id;
-      var section =
-        sectionIndex === null ? '' : 'section-'.concat(sectionIndex);
-      return 'react-autowhatever-'
-        .concat(id, '-')
-        .concat(section, '-item-')
-        .concat(itemIndex);
-    });
-
+    );
     _defineProperty(_assertThisInitialized(_this), 'onFocus', function (event) {
       var inputProps = _this.props.inputProps;
-
       _this.setState({
         isInputFocused: true,
       });
-
       inputProps.onFocus && inputProps.onFocus(event);
     });
-
     _defineProperty(_assertThisInitialized(_this), 'onBlur', function (event) {
       var inputProps = _this.props.inputProps;
-
       _this.setState({
         isInputFocused: false,
       });
-
       inputProps.onBlur && inputProps.onBlur(event);
     });
-
-    _defineProperty(_assertThisInitialized(_this), 'onKeyDown', function (
-      event
-    ) {
-      var _this$props = _this.props,
-        inputProps = _this$props.inputProps,
-        highlightedSectionIndex = _this$props.highlightedSectionIndex,
-        highlightedItemIndex = _this$props.highlightedItemIndex;
-      var keyCode = event.keyCode;
-
-      switch (keyCode) {
-        case 40: // ArrowDown
-
-        case 38: {
-          // ArrowUp
-          var nextPrev = keyCode === 40 ? 'next' : 'prev';
-
-          var _this$sectionIterator = _this.sectionIterator[nextPrev]([
-              highlightedSectionIndex,
-              highlightedItemIndex,
-            ]),
-            _this$sectionIterator2 = _slicedToArray(_this$sectionIterator, 2),
-            newHighlightedSectionIndex = _this$sectionIterator2[0],
-            newHighlightedItemIndex = _this$sectionIterator2[1];
-
-          inputProps.onKeyDown(event, {
-            newHighlightedSectionIndex: newHighlightedSectionIndex,
-            newHighlightedItemIndex: newHighlightedItemIndex,
-          });
-          break;
+    _defineProperty(
+      _assertThisInitialized(_this),
+      'onKeyDown',
+      function (event) {
+        var _this$props = _this.props,
+          inputProps = _this$props.inputProps,
+          highlightedSectionIndex = _this$props.highlightedSectionIndex,
+          highlightedItemIndex = _this$props.highlightedItemIndex;
+        var keyCode = event.keyCode;
+        switch (keyCode) {
+          case 40: // ArrowDown
+          case 38: {
+            // ArrowUp
+            var nextPrev = keyCode === 40 ? 'next' : 'prev';
+            var _this$sectionIterator = _this.sectionIterator[nextPrev]([
+                highlightedSectionIndex,
+                highlightedItemIndex,
+              ]),
+              _this$sectionIterator2 = _slicedToArray(_this$sectionIterator, 2),
+              newHighlightedSectionIndex = _this$sectionIterator2[0],
+              newHighlightedItemIndex = _this$sectionIterator2[1];
+            inputProps.onKeyDown(event, {
+              newHighlightedSectionIndex: newHighlightedSectionIndex,
+              newHighlightedItemIndex: newHighlightedItemIndex,
+            });
+            break;
+          }
+          default:
+            inputProps.onKeyDown(event, {
+              highlightedSectionIndex: highlightedSectionIndex,
+              highlightedItemIndex: highlightedItemIndex,
+            });
         }
-
-        default:
-          inputProps.onKeyDown(event, {
-            highlightedSectionIndex: highlightedSectionIndex,
-            highlightedItemIndex: highlightedItemIndex,
-          });
       }
-    });
-
+    );
     _this.highlightedItem = null;
     _this.state = {
       isInputFocused: false,
     };
-
     _this.setSectionsItems(props);
-
     _this.setSectionIterator(props);
-
     _this.setTheme(props);
-
     return _this;
   }
-
   _createClass(Autowhatever, [
     {
       key: 'componentDidMount',
       value: function componentDidMount() {
         this.ensureHighlightedItemIsVisible();
-      }, // eslint-disable-next-line camelcase, react/sort-comp
+      },
+
+      // eslint-disable-next-line camelcase, react/sort-comp
     },
     {
       key: 'UNSAFE_componentWillReceiveProps',
@@ -482,14 +429,12 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
         if (nextProps.items !== this.props.items) {
           this.setSectionsItems(nextProps);
         }
-
         if (
           nextProps.items !== this.props.items ||
           nextProps.multiSection !== this.props.multiSection
         ) {
           this.setSectionIterator(nextProps);
         }
-
         if (nextProps.theme !== this.props.theme) {
           this.setTheme(nextProps);
         }
@@ -538,11 +483,9 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
       key: 'renderSections',
       value: function renderSections() {
         var _this2 = this;
-
         if (this.allSectionsAreEmpty) {
           return null;
         }
-
         var theme = this.theme;
         var _this$props2 = this.props,
           id = _this$props2.id,
@@ -558,10 +501,10 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
           var sectionKeyPrefix = ''
             .concat(keyPrefix, 'section-')
             .concat(sectionIndex, '-');
-          var isFirstSection = sectionIndex === 0; // `key` is provided by theme()
+          var isFirstSection = sectionIndex === 0;
 
+          // `key` is provided by theme()
           /* eslint-disable react/jsx-key */
-
           return /*#__PURE__*/ _react['default'].createElement(
             'div',
             theme(
@@ -606,11 +549,9 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
       key: 'renderItems',
       value: function renderItems() {
         var items = this.props.items;
-
         if (items.length === 0) {
           return null;
         }
-
         var theme = this.theme;
         var _this$props3 = this.props,
           id = _this$props3.id,
@@ -640,11 +581,9 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
       key: 'ensureHighlightedItemIsVisible',
       value: function ensureHighlightedItemIsVisible() {
         var highlightedItem = this.highlightedItem;
-
         if (!highlightedItem) {
           return;
         }
-
         var itemsContainer = this.itemsContainer;
         var itemOffsetRelativeToContainer =
           highlightedItem.offsetParent === itemsContainer
@@ -665,7 +604,6 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
             highlightedItem.offsetHeight -
             itemsContainer.offsetHeight;
         }
-
         if (scrollTop !== itemsContainer.scrollTop) {
           itemsContainer.scrollTop = scrollTop;
         }
@@ -692,41 +630,44 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
           highlightedItemIndex
         );
         var itemsContainerId = 'react-autowhatever-'.concat(id);
-
         var containerProps = _objectSpread(
-          {
-            role: 'combobox',
-            'aria-haspopup': 'listbox',
-            'aria-owns': itemsContainerId,
-            'aria-expanded': isOpen,
-          },
-          theme(
-            'react-autowhatever-'.concat(id, '-container'),
-            'container',
-            isOpen && 'containerOpen'
-          ),
-          {},
-          this.props.containerProps
-        );
-
-        var inputComponent = renderInputComponent(
           _objectSpread(
             {
-              type: 'text',
-              value: '',
-              autoComplete: 'off',
-              'aria-autocomplete': 'list',
-              'aria-controls': itemsContainerId,
-              'aria-activedescendant': ariaActivedescendant,
+              role: 'combobox',
+              'aria-haspopup': 'listbox',
+              'aria-owns': itemsContainerId,
+              'aria-expanded': isOpen,
             },
             theme(
-              'react-autowhatever-'.concat(id, '-input'),
-              'input',
-              isOpen && 'inputOpen',
-              isInputFocused && 'inputFocused'
+              'react-autowhatever-'.concat(id, '-container'),
+              'container',
+              isOpen && 'containerOpen'
+            )
+          ),
+          this.props.containerProps
+        );
+        var inputComponent = renderInputComponent(
+          _objectSpread(
+            _objectSpread(
+              _objectSpread(
+                {
+                  type: 'text',
+                  value: '',
+                  autoComplete: 'off',
+                  'aria-autocomplete': 'list',
+                  'aria-controls': itemsContainerId,
+                  'aria-activedescendant': ariaActivedescendant,
+                },
+                theme(
+                  'react-autowhatever-'.concat(id, '-input'),
+                  'input',
+                  isOpen && 'inputOpen',
+                  isInputFocused && 'inputFocused'
+                )
+              ),
+              this.props.inputProps
             ),
             {},
-            this.props.inputProps,
             {
               onFocus: this.onFocus,
               onBlur: this.onBlur,
@@ -737,15 +678,18 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
         );
         var itemsContainer = renderItemsContainer({
           containerProps: _objectSpread(
-            {
-              id: itemsContainerId,
-              role: 'listbox',
-            },
-            theme(
-              'react-autowhatever-'.concat(id, '-items-container'),
-              'itemsContainer',
-              isOpen && 'itemsContainerOpen'
+            _objectSpread(
+              {
+                id: itemsContainerId,
+                role: 'listbox',
+              },
+              theme(
+                'react-autowhatever-'.concat(id, '-items-container'),
+                'itemsContainer',
+                isOpen && 'itemsContainerOpen'
+              )
             ),
+            {},
             {
               ref: this.storeItemsContainerReference,
             }
@@ -761,12 +705,8 @@ var Autowhatever = /*#__PURE__*/ (function (_Component) {
       },
     },
   ]);
-
   return Autowhatever;
-})(_react.Component);
-
-exports['default'] = Autowhatever;
-
+})(_react.Component));
 _defineProperty(Autowhatever, 'propTypes', {
   id: _propTypes['default'].string,
   // Used in aria-* attributes. If multiple Autowhatever's are rendered on a page, they must have unique ids.
@@ -805,7 +745,6 @@ _defineProperty(Autowhatever, 'propTypes', {
     _propTypes['default'].array,
   ]),
 });
-
 _defineProperty(Autowhatever, 'defaultProps', {
   id: '1',
   multiSection: false,

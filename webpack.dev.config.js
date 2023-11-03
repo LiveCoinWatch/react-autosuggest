@@ -1,22 +1,15 @@
 const path = require('path');
-const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const host = process.env.NODE_HOST || 'localhost';
-const port = process.env.NODE_PORT || 3000;
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   mode: 'development',
-  entry: [
-    `webpack-dev-server/client?http://${host}:${port}`,
-    './demo/src/index'
-  ],
+  entry: './demo/src/index',
 
   output: {
     path: path.join(__dirname, 'dist'), // Must be an absolute path
     filename: 'index.js',
-    publicPath: '/demo/dist/'
+    publicPath: '/demo/dist/',
   },
 
   module: {
@@ -26,8 +19,8 @@ module.exports = {
         loader: 'babel-loader',
         include: [
           path.join(__dirname, 'src'), // Must be an absolute path
-          path.join(__dirname, 'demo', 'src') // Must be an absolute path
-        ]
+          path.join(__dirname, 'demo', 'src'), // Must be an absolute path
+        ],
       },
       {
         test: /\.less$/,
@@ -37,37 +30,39 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]__[local]___[hash:base64:5]'
-              }
-            }
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [autoprefixer()]
-            }
+              postcssOptions: {
+                plugins: [autoprefixer()],
+              },
+            },
           },
           {
             loader: 'less-loader',
             options: {
-              paths: [path.resolve(__dirname, 'demo', 'src')]
-            }
-          }
+              lessOptions: {
+                paths: [path.resolve(__dirname, 'demo', 'src')],
+              },
+            },
+          },
         ],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
-        test: /\.jpg$/,
-        loader: 'url-loader?limit=8192' // 8kb
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset', // Webpack 5 feature to replace url-loader/file-loader
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8192, // 8kb
+          },
+        },
       },
-      {
-        test: /\.svg$/,
-        use: [
-          'url-loader?limit=8192!', // 8kb
-          'svgo-loader'
-        ]
-      }
-    ]
+    ],
   },
 
   resolve: {
@@ -75,16 +70,25 @@ module.exports = {
       'node_modules',
       'components',
       'src',
-      path.join(__dirname, 'demo', 'src') // Must be an absolute path
-    ]
+      path.join(__dirname, 'demo', 'src'), // Must be an absolute path
+    ],
+    fallback: {
+      // Add fallbacks for node modules if necessary
+    },
   },
 
   devtool: 'source-map',
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'app.css'
-    })
-  ]
+      filename: 'app.css',
+    }),
+  ],
+
+  // webpack-dev-server configuration
+  devServer: {
+    hot: true,
+    host: process.env.NODE_HOST || 'localhost',
+    port: process.env.NODE_PORT || 3000,
+  },
 };
